@@ -6,7 +6,9 @@ function list(req, res) {
 
 function get(req, res) {
   const post = postService.getPost(req.params.id);
+
   if (!post) return res.status(404).json({ error: 'Post not found' });
+
   return res.json({ data: post });
 }
 
@@ -21,13 +23,17 @@ function create(req, res) {
 
 function update(req, res) {
   const post = postService.updatePost(req.params.id, req.body);
+
   if (!post) return res.status(404).json({ error: 'Post not found' });
+
   return res.json({ data: post });
 }
 
 function remove(req, res) {
   const removed = postService.removePost(req.params.id);
+
   if (!removed) return res.status(404).json({ error: 'Post not found' });
+
   return res.status(204).send();
 }
 
